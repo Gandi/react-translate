@@ -1,0 +1,27 @@
+---
+extends: "airbnb"
+parser: "babel-eslint"
+root: true
+
+plugins:
+  - "flowtype"
+  - "babel"
+
+env:
+  mocha: true
+
+# override react/prefer-stateless-function as it does not play nice with
+# decorators
+rules:
+  flowtype/define-flow-type: 1
+  react/prefer-stateless-function: 0
+  no-underscore-dangle:
+    - error
+    - allowAfterThis: true
+      allow: ['__', '__DEV__', '__SERVER__']
+  import/no-extraneous-dependencies: off
+  react/jsx-filename-extension: off
+
+globals:
+  __SERVER__: true
+  __DEV__: true

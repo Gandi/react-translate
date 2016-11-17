@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+
+/* eslint no-var: 0 */
+/* eslint vars-on-top: 0 */
+/* eslint func-names: 0 */
+/* eslint no-throw-literal: 0 */
+
+/*
+ * This script is automatically called by the `extract_messages` script
+ * to merge external libraries messages with passed apps messages.
+ */
+
+var _ = require('lodash');
+var fs = require('fs');
+var glob = require('glob');
+
+var helpers = require('./helpers');
+
+var args = process.argv.slice(2);
+var namespace = args[0];
+
+helpers.log('');
+helpers.log('# Merging catalogs for namespace ${namespace}...');
+
+// Merge external libraries template translation files
+// with app template translation file.
+// FIXME: change this legacy pattern
+glob('node_modules/gandi.*/dist/locales/template/*.json', {}, function (er, files) {
+  if (er) {
+    helpers.error('Error reading files');
+    throw er;
+  }
+
+  if (!files.length) {
+    helpers.log('  No template translation files in node_modules');
+    return true;
+  }
+
+  return _.each(files, function (path) {
+    helpers.log('  ' + path);
+    var partialJson = JSON.parse(fs.readFileSync(path, 'utf-8'));
+
+    var destPath = 'locales/template/' + namespace + '.json';
+
+    var sourceJson = {};
+    try {
+      sourceJson = JSON.parse(fs.readFileSync(destPath, 'utf-8'));
+    } catch (e) {
+      helpers.warn(destPath + ' doesn\'t exist yet, will create it.');
+    }
+
+    var newJson = _.defaults(sourceJson, partialJson);
+
+    var printableJson = JSON.stringify(helpers.sortObject(newJson), null, 4);
+
+    // Add a trailing space at the end of each line that ends with a comma,
+    // like Weblate does, so the diffs will be easier to read.
+    printableJson = printableJson.replace(/,(?:\r\n|\r|\n)/mg, ', \n');
+
+    try {
+      fs.writeFileSync(destPath, printableJson, 'utf8');
+    } catch (err) {
+      if (err) {
+        helpers.error('Error saving files');
+        throw err;
+      }
+    }
+
+    helpers.success('  Successfully saved file `' + destPath + '`');
+  });
+});

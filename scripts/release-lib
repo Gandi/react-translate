@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+PROJECT_NAME="$(node -e 'console.log(require("./package.json").name)')"
+VERSION="${1:-minor}"
+
+################################################################################
+# Check required global variables are set.
+# Globals:
+#   * PROJECT_NAME
+#   * DEBEMAIL
+#   * DEBFULLNAME
+# Arguments:
+#   None
+# Returns
+#   None
+################################################################################
+function ensure_environment {
+  [[ -n "$VERSION" ]] || {
+    echo "You must pass expected version as first parameter";
+    exit 1;
+  }
+  [[ -n "$PROJECT_NAME" ]] || {
+    echo "Unable to read project name from package.json";
+    exit 1;
+  }
+}
+
+################################################################################
+# Update package version
+#
+# Also:
+#   * update $VERSION value to make sure it matches current release
+#   * Add `package.json` to git staging area
+#
+# Globals:
+#   * VERSION
+# Arguments:
+#   None
+# Returns
+#   None
+################################################################################
+function bump_version {
+  npm version "${VERSION}" --no-git-tag-version
+  git add package.json
+
+  # Update version with the generated number in package.json
+  VERSION="$(node -e 'console.log(require("./package.json").version)')"
+}
+
+################################################################################
+# Update project CHANGELOG.md
+#
+# Also:
+#   * Add `CHANGELOG.md` to git staging area
+#
+# Globals:
+#   * VERSION
+# Arguments:
+#   None
+# Returns
+#   None
+################################################################################
+function update_project_changelog {
+  DATE=$(date +%Y-%m-%d)
+  sed -i \
+    -e "s:^## \[\?Unreleased\]\?:## [Unreleased]\n\n## [${VERSION}] - ${DATE}:" \
+    -e "s#^\[Unreleased\]: \(.*\)/compare/\(.*\)\.\.\.\(master\|HEAD\)#[Unreleased]: \1/compare/${VERSION}\.\.\.\3\n[${VERSION}]: \1/compare/\2...${VERSION}#" \
+    CHANGELOG.md
+  git add CHANGELOG.md
+}
+
+################################################################################
+# Check git diff for validation
+#
+# Also:
+#   * reset modifications on user request
+#
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns
+#   None
+################################################################################
+function validate_changes {
+  git diff --cached
+  read -p 'Are those changes OK (y/N)? ' -n 1 -r
+  if [[ ! $REPLY =~ ^[Yy]$ ]]
+  then
+    git reset HEAD CHANGELOG.md package.json
+    exit 1;
+  fi
+}
+
+################################################################################
+# Commit and submit release
+#
+# Globals:
+#   None
+# Arguments:
+#   None
+# Returns
+#   None
+################################################################################
+function submit_release {
+  git commit -m "Release ${VERSION}"
+  git pull --rebase origin master
+  npm test
+  git tag "${VERSION}" -m "Release ${VERSION}"
+  git push origin master "${VERSION}"
+}
+
+ensure_environment
+bump_version
+update_project_changelog
+validate_changes
+submit_release

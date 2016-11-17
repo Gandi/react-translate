@@ -1,0 +1,45 @@
+// @flow
+
+import type {
+  WithTranslatorOptions,
+  TranslatorComponentProps,
+} from './react/types';
+
+import type {
+  Translator,
+  Locale,
+} from './tools/types';
+
+declare function provideTranslate(translator: Object, namespace: string): ReactClass<{}>;
+declare function withTranslator(options: WithTranslatorOptions|void): ReactClass<{}>;
+declare class DateTime extends React$Component {};
+declare class FromNow extends React$Component {};
+declare class Price extends React$Component {};
+declare var reducer: Object;
+declare function selectLocale(): Object;
+declare function createTranslator(i18n: Object, dispatch: Function): Translator;
+declare function negociateLocale(preferedLocales: Array<Locale>, availableLocales: Array<Locale>, defaultLocale: Locale): Locale;
+
+
+export {
+  // decorators
+  provideTranslate,
+  withTranslator,
+
+  // components
+  DateTime,
+  FromNow,
+  Price,
+
+  // tools
+  createTranslator,
+  negociateLocale,
+}
+
+export type {
+  WithTranslatorOptions,
+  TranslatorComponentProps,
+
+  Translator,
+  Locale,
+};

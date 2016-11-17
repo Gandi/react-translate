@@ -1,0 +1,97 @@
+{
+  "name": "@gandi/react-translate",
+  "version": "1.0.0-alpha",
+  "description": "I18N libraries and tools for your react application.",
+  "main": "./dist/index.js",
+  "bin": {
+    "clean_catalog": "./bin/clean_catalog",
+    "create_catalog": "./bin/create_catalog",
+    "create_counterpart_plurals": "./bin/create_counterpart_plurals",
+    "extract_messages": "./bin/extract_messages",
+    "merge_catalogs": "./bin/merge_catalogs",
+    "update_catalog": "./bin/update_catalog"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "tests",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint ./src && eslint ./bin/*",
+    "coverage": "nyc npm test",
+    "test": "NODE_PATH=$NODE_PATH:./src BABEL_DISABLE_CACHE=1 mocha --compilers js:babel-core/register --require tests/helpers.js $(find ./src -name '*-test.js')",
+    "build": "babel --ignore '*-test.js' -d dist src",
+    "release": "npm-run-all release:clean:dist build release:copy:typesfiles",
+    "release:clean:dist": "rm -rf dist && mkdir ./dist",
+    "release:copy:typesfiles": "find src -iname \"*.js.flow\" | ./node_modules/.bin/ls-to-cp -p '^src/([^/]+)' -d 'dist/$1' && find src -type f -regextype posix-extended -regex '.*\\/types\\.js$' | ./node_modules/.bin/ls-to-cp -p '^src/([^/]+)' -d 'dist/$1'",
+    "prepublish": "npm run release",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*-test.js",
+      "tests/"
+    ]
+  },
+  "author": "Gandi",
+  "license": "ISC",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gandi/react-translate"
+  },
+  "bugs": {
+    "url": "https://github.com/Gandi/react-translate/issues"
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@gandi/babel-preset-gandi": "^1.0.0",
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-polyfill": "^6.9.1",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.5.0",
+    "cheerio": "^0.20.0",
+    "colors": "^1.1.2",
+    "enzyme": "^2.4.1",
+    "eslint": "^3.10.1",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-flowtype": "^2.17.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.7.1",
+    "flow-bin": "^0.32.0",
+    "jsdom": "^9.4.1",
+    "lodash": "^4.17.1",
+    "ls-to-cp": "^2.1.0",
+    "mocha": "^3.0.1",
+    "moment": "^2.15.1",
+    "npm-run-all": "^3.1.1",
+    "nyc": "^7.1.0",
+    "react": "^15.3.1",
+    "react-addons-pure-render-mixin": "^15.3.1",
+    "react-addons-test-utils": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "sinon": "^1.17.5"
+  },
+  "dependencies": {
+    "counterpart": "^0.17.2",
+    "glob": "^7.0.5",
+    "hoist-non-react-statics": "^1.2.0",
+    "intl": "^1.2.5",
+    "po2json": "^0.4.1",
+    "shallowequal": "^0.2.2",
+    "warning": "^3.0.0"
+  },
+  "peerDependencies": {
+    "colors": "*",
+    "lodash": "*",
+    "moment": ">=2.15.1",
+    "react": "*",
+    "react-dom": "*"
+  }
+}

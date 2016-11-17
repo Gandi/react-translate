@@ -1,0 +1,90 @@
+#!/usr/bin/env node
+
+/* eslint no-var: 0 */
+/* eslint vars-on-top: 0 */
+/* eslint func-names: 0 */
+/* eslint no-throw-literal: 0 */
+/* eslint no-param-reassign: 0 */
+
+/*
+ * Once you have run the `extract_messages` script and found
+ * new messages (translation "keys"), you can run this script to
+ * create each locale's json translation file for new namespaces
+ * or languages, and then run `update_catalog` to populate the existing ones
+ * with the new messages that were found.
+ */
+
+var _ = require('lodash');
+var fs = require('fs');
+var glob = require('glob');
+var helpers = require('./helpers');
+
+
+helpers.log('');
+helpers.log('# Creating missing catalog...');
+
+// Create missing files.
+var filesCreated = false;
+glob('locales/template/*.json', {}, function (er, files) {
+  if (er) {
+    helpers.error('Error reading files');
+    throw er;
+  }
+
+  if (!files.length) {
+    helpers.warn('  No translation files');
+    helpers.log('  Make sure you have a folder `locales/template` with translation files');
+    return true;
+  }
+
+  return _.each(files, function (path, index) {
+    var newFiles = [];
+
+    glob('locales/*', {}, function (erDirs, dirs) {
+      if (erDirs) {
+        helpers.error('Error reading locales dirs');
+        throw erDirs;
+      }
+
+      _.each(dirs, function (dir) {
+        const lang = dir.replace('locales/', '');
+        if (lang !== 'template') {
+          newFiles.push(path.replace(/(.*)\/[\w_]+\/(.*)/, '$1/' + lang + '/$2'));
+        }
+      });
+
+      _.each(newFiles, function (newPath, indexLocales) {
+        if (index === files.length - 1 &&
+            newFiles.length && indexLocales === newFiles.length - 1) {
+          if (filesCreated === false) {
+            helpers.log('  No new json files were created');
+          }
+          filesCreated = undefined;
+        }
+
+        if (helpers.fileExistSync(newPath)) {
+          return true;
+        }
+
+        var sourceJson = JSON.parse(fs.readFileSync(path, 'utf-8'));
+        sourceJson = _.mapValues(sourceJson, function () {
+          return '';
+        });
+        var newJson = _.defaults({}, sourceJson);
+
+        var printableJson = JSON.stringify(newJson, null, 4);
+
+        filesCreated = true;
+        fs.writeFile(newPath, printableJson, function (err) {
+          if (err) {
+            helpers.error('Error creating file');
+            throw err;
+          }
+          helpers.success('  Successfully created file `' + newPath + '`');
+        });
+
+        return true;
+      });
+    });
+  });
+});

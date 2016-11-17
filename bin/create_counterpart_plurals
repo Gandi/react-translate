@@ -1,0 +1,63 @@
+#!/usr/bin/env node
+
+/* eslint no-var: 0 */
+/* eslint vars-on-top: 0 */
+/* eslint func-names: 0 */
+/* eslint no-throw-literal: 0 */
+
+/*
+ * This script is automatically called by the `extract_messages` script
+ * to find and extract translation plurals, in our weblate-compatible variant
+ * of counterpart's plurals syntax.
+ */
+
+var _ = require('lodash');
+var fs = require('fs');
+var glob = require('glob');
+var helpers = require('./helpers');
+
+
+helpers.log('');
+helpers.log('# Searching plurals...');
+
+// Add plural source strings to the template translation files.
+glob('locales/template/*.json', {}, function (er, files) {
+  if (er) {
+    helpers.error('Error reading files');
+    throw er;
+  }
+
+  if (!files.length) {
+    helpers.warn('  No template translation files');
+    helpers.log('  Make sure you have a folder `locales/template` with translation files');
+    return true;
+  }
+
+  return _.each(files, function (path) {
+    helpers.log('  ' + path);
+    var sourceJson = JSON.parse(fs.readFileSync(path, 'utf-8'));
+
+    var newJson = sourceJson;
+    _.forOwn(sourceJson, function (value, key) {
+      if (!key.match(/\|\w+$/) && key.match(/%\(count\)[d|s]/)) {
+        newJson[key + '|zero'] = key + '|zero';
+        newJson[key + '|one'] = key + '|one';
+        newJson[key + '|other'] = key + '|other';
+        delete newJson[key];
+      }
+    });
+
+    var printableJson = JSON.stringify(helpers.sortObject(newJson), null, 4);
+
+    try {
+      fs.writeFileSync(path, printableJson, 'utf8');
+    } catch (err) {
+      if (err) {
+        helpers.error('Error saving file');
+        throw err;
+      }
+    }
+
+    helpers.success('  Successfully saved file `' + path + '`');
+  });
+});

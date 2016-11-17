@@ -1,0 +1,5 @@
+dist
+node_modules
+eslint.xml
+.nyc_output/
+npm-debug.log
