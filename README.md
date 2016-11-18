@@ -1,7 +1,7 @@
-# @gandi/react-translate [![build status][@gandi/react-translate-tests]][@gandi/react-translate-tests-url]
+# @gandi/react-translate [![build status][@gandi/react-translate-tests-image]][@gandi/react-translate-tests-url]
 
-[@gandi/react-translate-tests-url]: FIXME
-[@gandi/react-translate-tests]: FIXME
+[@gandi/react-translate-tests-url]: https://travis-ci.org/Gandi/react-translate
+[@gandi/react-translate-tests-image]: https://travis-ci.org/Gandi/react-translate.svg?branch=master
 
 I18N libraries and tools for your react application.
 
