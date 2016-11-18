@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+  - Create a launcher for extract_messages, update_catalog and other scripts
+
 ## [1.0.0-alpha] - 2016-11-17
 
 ## 2016-11-15

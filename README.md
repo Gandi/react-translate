@@ -20,6 +20,17 @@ I18N libraries and tools for your react application.
 npm install --save @gandi/react-translate
 ```
 
+[Optional] Add the following script to your `package.json`, it's a simple shortcut for extraction
+scripts:
+
+```
+// ...
+"scripts": {
+  // ...
+  "i18n": "react-translate-scripts"
+}
+```
+
 ## Usage
 
 ### 1. init: `provideTranslate`
@@ -141,7 +152,7 @@ END
 First create a template message file with all the translation strings in a json:
 
 ```bash
-node_modules/.bin/extract_messages [folder/to/extract] [filename]
+npm run i18n extract_messages [folder/to/extract] [namespace]
 ```
 
 _(All commands are launched from the root directory of your node project.)_
@@ -150,17 +161,23 @@ _(All commands are launched from the root directory of your node project.)_
 
 A catalog file is a json file, representing a single language.
 
+Before the first run you'll need to create one folder per needed locale, for instance:
+
+```
+mkdir locales/{fr,it,es}
+```
+
 After you created your message file – **and each time you make changes to it** – you’ll need to
 create or update the catalogs:
 
 ```bash
-node_modules/.bin/create_catalog && node_modules/.bin/update_catalog
+npm run i18n create_catalog && npm run i18n update_catalog
 ```
 
 Sometimes you must clean the catalogs by running this command:
 
 ```bash
-node_modules/.bin/clean_catalog
+npm run i18n clean_catalog
 ```
 
 > Tips: In case you use a tool like weblate, you may not clean every time you are extracting
