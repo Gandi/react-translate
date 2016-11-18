@@ -1,18 +1,20 @@
-# @gandi/react-translate [![build status][@gandi/react-translate-tests-image]][@gandi/react-translate-tests-url]
+# @gandi/react-translate
 
-[@gandi/react-translate-tests-url]: https://travis-ci.org/Gandi/react-translate
-[@gandi/react-translate-tests-image]: https://travis-ci.org/Gandi/react-translate.svg?branch=master
+>I18N libraries and tools for your react application.
 
-I18N libraries and tools for your react application.
+[![build status](https://img.shields.io/travis/Gandi/react-translate/master.svg?style=flat-square)](https://travis-ci.org/Gandi/react-translate)
+[![npm version](https://img.shields.io/npm/v/@gandi/react-translate.svg?style=flat-square)](https://www.npmjs.com/package/@gandi/react-translate)
+[![npm downloads](https://img.shields.io/npm/dm/@gandi/react-translate.svg?style=flat-square)](https://www.npmjs.com/package/@gandi/react-translate)
+[![#gandi on freenode](https://img.shields.io/badge/irc-%23gandi%20%40%20freenode-61DAFB.svg?style=flat-square)](https://webchat.freenode.net/)
 
 **Features:**
 
-* String localization with [counterpart](https://github.com/martinandert/counterpart)
-* messages extraction
-* Catalogs management (similar to [gettext](https://en.wikipedia.org/wiki/Gettext))
-* Date & Time formats with [momentjs](http://momentjs.com/)
-* Prices and number format with [intljs](https://github.com/andyearnshaw/Intl.js)
-* several components & functions
+* String localization with [counterpart](https://github.com/martinandert/counterpart);
+* Messages extraction;
+* Catalogs management (similar to [gettext](https://en.wikipedia.org/wiki/Gettext));
+* Date & Time formats with [momentjs](http://momentjs.com/);
+* Prices and number format with [intljs](https://github.com/andyearnshaw/Intl.js);
+* Several components & functions.
 
 ## Installation
 
@@ -167,13 +169,13 @@ node_modules/.bin/clean_catalog
 > messages or updating catalogs to avoid losing old translations that could be used by the tool to
 > suggest translations.
 
-## Documentations
+## Documentation
 
-- [Translator (aka `__`)](doc/translator.md)
-- [Date/Time (aka `localize`)](doc/localize.md)
-- [Pricing (aka prize)](doc/prize.md)
-- [formatCurrency (aka MapCurrencyISOToSymbol)](doc/formatCurrency.md)
-- [Number formatting (aka formatNumber)](doc/formatNumber.md)
+* [Translator (aka `__`)](doc/translator.md)
+* [Date/Time (aka `localize`)](doc/localize.md)
+* [Pricing (aka prize)](doc/prize.md)
+* [formatCurrency (aka MapCurrencyISOToSymbol)](doc/formatCurrency.md)
+* [Number formatting (aka formatNumber)](doc/formatNumber.md)
 
 ## Tests
 
@@ -240,12 +242,15 @@ class MyComponent extends Component {
 }
 ```
 
-## Changelog
+## Change Log
 
 All notable changes to this project will be documented in [this section](CHANGELOG.md).
 
 *This project adheres to [Semantic Versioning](http://semver.org/) and [Keep A Changelog](http://keepachangelog.com/).*
 
+## Patrons
+
+The work on this project was possible thanks to [Gandi.net](https://gandi.net) (#no_bullshit).
 
 ## Found a bug or contribute?
 
@@ -256,18 +261,14 @@ Else you can start with [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## TODO
 
-* document `Pricing` features
-* add formatCurrency component
-* extract babeljs compilation process from extract_messages script (CRA compatible)
-* add a script launcher and remove usage of `node_modules/.bin/bla-thing` from docs (cf. CRA)
-* improve doc on how to load translations (at least give an example)
-* link translator options to related libs
-* remove required pybabel.cfg
-* allow user to init a logger for missing translations and use `warning` as fallback
-* fix or change build process in `bin/merge_catalogs` which looks for legacy gandi's catalogs
-* replace pybabel by a npm script (eg. https://www.npmjs.com/package/babel-gettext-extractor)
-* fix dependency path for scripts called in extract_messages (e.g. po2json)
-
-## Final though
-
-This project is supported by [Gandi.net](https://gandi.net) (#no_bullshit)
+* Document `Pricing` features
+* Add formatCurrency component
+* Extract babeljs compilation process from extract_messages script (CRA compatible)
+* Add a script launcher and remove usage of `node_modules/.bin/bla-thing` from docs (cf. CRA)
+* Improve doc on how to load translations (at least give an example)
+* Link translator options to related libs
+* Remove required pybabel.cfg
+* Allow user to init a logger for missing translations and use `warning` as fallback
+* Fix or change build process in `bin/merge_catalogs` which looks for legacy gandi's catalogs
+* Replace pybabel by a npm script (eg. https://www.npmjs.com/package/babel-gettext-extractor)
+* Fix dependency path for scripts called in extract_messages (e.g. po2json)
