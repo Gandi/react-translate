@@ -1,2 +1,3 @@
 bin/extract_messages
+bin/babel-preset-gettext.json
 **/*.js.flow

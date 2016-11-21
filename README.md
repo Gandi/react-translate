@@ -132,31 +132,18 @@ JavaScript, it is your responsibility to pass it to the extract script._
 
 ## 3. Create language files
 
-**Prerequisite:**
+This library uses babel and the plugin
+[babel-gettext-plugin](https://www.npmjs.com/package/babel-gettext-plugin) to extract your
+internationalized strings.
 
-You need [the extracting tool `pybabel`](http://babel.pocoo.org/en/latest/) (launch extract_messages for installation help), you need `babel-cli` and the preset used by your app and also `po2json`.
+> In case you created your app with create-react-app you have to declare the babel preset you need
+to build your application, for example:
 
-For example, first create the file `pybabel.cfg` with the following content:
-
-```
-[javascript: **.js]
-encoding = utf-8
-extract_messages = __
-```
-
-Then if you created your app with create-react-app and using a debian like OS, you can do the following setup:
-
-```bash
-# pybabel installation
-sudo apt-get install python-pybabel
-# force dependencies (OK we need to make this easier)
-npm i babel-cli babel-preset-react-app po2json
-# force the preset for babel
-cat <<EOF > .babelrc
+```json
+// file:.babelrc
 {
-  "presets": ["react-app"]
+  "presets": ["react"]
 }
-END
 ```
 
 ### Message files
@@ -290,10 +277,7 @@ Else you can start with [CONTRIBUTING.md](CONTRIBUTING.md).
 
 * Document `Pricing` features
 * Add formatCurrency component
-* Extract babeljs compilation process from extract_messages script (CRA compatible)
 * Improve doc on how to load translations (at least give an example)
 * Link translator options to related libs
-* Remove required pybabel.cfg
 * Allow user to init a logger for missing translations and use `warning` as fallback
 * Fix or change build process in `bin/merge_catalogs` which looks for legacy gandi's catalogs
-* Replace pybabel by a npm script (eg. https://www.npmjs.com/package/babel-gettext-extractor)

@@ -9,8 +9,10 @@
   "files": [
     "bin",
     "dist",
+    "doc",
     "tests",
     "CHANGELOG.md",
+    "LICENSE",
     "README.md"
   ],
   "scripts": {
@@ -40,7 +42,7 @@
   "bugs": {
     "url": "https://github.com/Gandi/react-translate/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/Gandi/react-translate",
   "devDependencies": {
     "@gandi/babel-preset-gandi": "^1.0.0",
     "babel-cli": "^6.11.4",

@@ -16,38 +16,29 @@ if [[ $# -eq 1 ]] ; then
     exit 1
 fi
 
-hash pybabel 2>/dev/null || { echo >&2 "Please install pybabel and try again \
-(\`apt install python-pybabel\` or \`pip install babel\`)."; exit 1; }
+set -e
 
 CURRENT_DIR="$(pwd)"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TMP_DIRECTORY=tmp-react-translate
 APP_DIR=$1
 NAMESPACE=$2
+PO_FILE=$TMP_DIRECTORY/extracted.po
 FILENAME=locales/template/${NAMESPACE}.json
 
-echo "# Extracting to the '${NAMESPACE}' namespace from ${APP_DIR}"
-TMP_BABEL_DIR=$CURRENT_DIR/tmp_babel_compiled
-mkdir -p $TMP_BABEL_DIR
-POT_FILE=${TMP_BABEL_DIR}/locales/translations.pot
-mkdir -p $TMP_BABEL_DIR/locales/
+mkdir -p $TMP_DIRECTORY/
 mkdir -p $CURRENT_DIR/locales/template/
 
-set -e
-# Transpile ES6 to ES5 js, as pybabel chokes on some JSX constructs.
-node_modules/.bin/babel $APP_DIR --out-dir $TMP_BABEL_DIR > /dev/null
-
-# Don't confuse babeljs with pybabel. ;)
-pybabel extract -F pybabel.cfg --omit-header --sort-output \
-    -k __:1 --no-default-keywords -o $POT_FILE $TMP_BABEL_DIR  &> /dev/null
-node_modules/.bin/po2json $POT_FILE $FILENAME -f mf --pretty --fallback-to-msgid
+node_modules/.bin/babel --presets $SCRIPT_DIR/babel-preset-gettext.json $APP_DIR  > /dev/null
+node_modules/.bin/po2json $PO_FILE $FILENAME -f mf --pretty --fallback-to-msgid
 
 echo -e "  \e[32mSuccessfully extracted messages to ${FILENAME}\e[0m"
 
 # clean
-rm $POT_FILE
-rm -r $TMP_BABEL_DIR
+rm -r $TMP_DIRECTORY
 
 # merge external libs messages
-node_modules/.bin/merge_catalogs $2
+node_modules/.bin/merge_catalogs $NAMESPACE
 
 # rewrite plurals
 node_modules/.bin/create_counterpart_plurals

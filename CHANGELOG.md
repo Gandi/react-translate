@@ -9,6 +9,7 @@
 ### Changed
 
   - Clean dependencies and improve installation part of the README.
+  - Replace `pybabel` extraction lib by `babel-gettext-plugin`.
 
 ## [1.0.0-alpha] - 2016-11-17
 
