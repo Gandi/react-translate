@@ -4,12 +4,7 @@
   "description": "I18N libraries and tools for your react application.",
   "main": "./dist/index.js",
   "bin": {
-    "clean_catalog": "./bin/clean_catalog",
-    "create_catalog": "./bin/create_catalog",
-    "create_counterpart_plurals": "./bin/create_counterpart_plurals",
-    "extract_messages": "./bin/extract_messages",
-    "merge_catalogs": "./bin/merge_catalogs",
-    "update_catalog": "./bin/update_catalog"
+    "react-translate-scripts": "./bin/react-translate-scripts"
   },
   "files": [
     "bin",

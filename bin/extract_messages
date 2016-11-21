@@ -2,8 +2,12 @@
 
 # Check arguments
 if [[ $# -eq 0 ]] ; then
-    echo 'No argument supplied. You must supply the directory' \
-    'from which to extract messages and the namespace'
+    echo -e "Usage: extract_messages <path/to/src> <namespaces>
+
+  This script extracts translations from the passed directory and generates a json file in a fake
+  locale 'template', that serves the purposes of a .pot file. You will then need to run the
+  \`update_catalog\` script to populate the real locales with the new translations that were found."
+
     exit 1
 fi
 
@@ -11,12 +15,6 @@ if [[ $# -eq 1 ]] ; then
     echo 'You must supply the namespace in which to extract messages'
     exit 1
 fi
-
-echo "This script extracts translations from the passed diretory and generates "
-echo "a json file in a fake locale 'template', that serves the purposes of a .pot file."
-echo "You will then need to run the \`update_catalog\` script to populate "
-echo "the real locales with the new translations that were found."
-echo ""
 
 hash pybabel 2>/dev/null || { echo >&2 "Please install pybabel and try again \
 (\`apt install python-pybabel\` or \`pip install babel\`)."; exit 1; }

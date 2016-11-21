@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var exec = require('child_process').exec;
+
+var script = process.argv[2];
+var args = process.argv.slice(3);
+var scriptMap = [
+  'extract_messages', 'clean_catalog', 'create_catalog',
+  'create_counterpart_plurals', 'merge_catalogs', 'update_catalog',
+];
+
+switch (script) {
+  case 'extract_messages':
+  case 'clean_catalog':
+  case 'create_catalog':
+  case 'create_counterpart_plurals':
+  case 'merge_catalogs':
+  case 'update_catalog':
+    exec(path.resolve(__dirname, script) + ' ' + args.join(' '), (error, stdout) => {
+      if (stdout) {
+        console.log(stdout);
+      }
+      if (error) {
+        console.error(error.toString());
+      }
+    });
+    break;
+  case undefined:
+    console.info('Available scripts:', scriptMap.join(', '));
+    break;
+  default:
+    console.log('Unknown script "' + script + '".');
+    break;
+}
