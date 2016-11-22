@@ -50,7 +50,6 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.5.0",
     "cheerio": "^0.20.0",
-    "colors": "^1.1.2",
     "enzyme": "^2.4.1",
     "eslint": "^3.10.1",
     "eslint-config-airbnb": "^10.0.0",
@@ -61,10 +60,8 @@
     "eslint-plugin-react": "^6.7.1",
     "flow-bin": "^0.32.0",
     "jsdom": "^9.4.1",
-    "lodash": "^4.17.1",
     "ls-to-cp": "^2.1.0",
     "mocha": "^3.0.1",
-    "moment": "^2.15.1",
     "npm-run-all": "^3.1.1",
     "nyc": "^7.1.0",
     "react": "^15.3.1",
@@ -74,18 +71,19 @@
     "sinon": "^1.17.5"
   },
   "dependencies": {
+    "colors": "^1.1.2",
     "counterpart": "^0.17.2",
     "glob": "^7.0.5",
     "hoist-non-react-statics": "^1.2.0",
     "intl": "^1.2.5",
+    "lodash": "^4.17.1",
+    "moment": "^2.15.1",
     "po2json": "^0.4.1",
     "shallowequal": "^0.2.2",
     "warning": "^3.0.0"
   },
   "peerDependencies": {
-    "colors": "*",
-    "lodash": "*",
-    "moment": ">=2.15.1",
+    "babel-cli": "*",
     "react": "*",
     "react-dom": "*"
   }
