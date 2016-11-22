@@ -4,7 +4,11 @@
 
 ### Added
 
-  - Create a launcher for extract_messages, update_catalog and other scripts
+  - Create a launcher for extract_messages, update_catalog and other scripts.
+
+### Changed
+
+  - Clean dependencies and improve installation part of the README.
 
 ## [1.0.0-alpha] - 2016-11-17
 

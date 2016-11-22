@@ -22,7 +22,7 @@
 npm install --save @gandi/react-translate
 ```
 
-[Optional] Add the following script to your `package.json`, it's a simple shortcut for extraction
+Add the following script to your `package.json`, it's a simple shortcut for extraction
 scripts:
 
 ```
@@ -32,6 +32,16 @@ scripts:
   "i18n": "react-translate-scripts"
 }
 ```
+
+Make sure you have `babel-cli` in your dependencies (it's up to you to select the version saved in
+your project):
+
+```
+npm install babel-cli
+```
+
+> Note for npm 2 users, you have to make sure po2json in the root `node_modules`, the same way as
+`babel-cli`
 
 ## Usage
 
@@ -281,11 +291,9 @@ Else you can start with [CONTRIBUTING.md](CONTRIBUTING.md).
 * Document `Pricing` features
 * Add formatCurrency component
 * Extract babeljs compilation process from extract_messages script (CRA compatible)
-* Add a script launcher and remove usage of `node_modules/.bin/bla-thing` from docs (cf. CRA)
 * Improve doc on how to load translations (at least give an example)
 * Link translator options to related libs
 * Remove required pybabel.cfg
 * Allow user to init a logger for missing translations and use `warning` as fallback
 * Fix or change build process in `bin/merge_catalogs` which looks for legacy gandi's catalogs
 * Replace pybabel by a npm script (eg. https://www.npmjs.com/package/babel-gettext-extractor)
-* Fix dependency path for scripts called in extract_messages (e.g. po2json)
