@@ -100,9 +100,12 @@ class MyComponent extends Component {
 }
 ```
 
-In order to prevent [unknown
-properties](https://facebook.github.io/react/warnings/unknown-prop.html) (and non-standard DOM
-attributes), you can use the `propsNamespace` option:
+In order to prevent the [unknown props warning](https://facebook.github.io/react/warnings/unknown-prop.html)
+(and non-standard DOM attributes), you can use the `propsNamespace` option.
+
+> ```
+bundle.js:2009 Warning: Unknown props `formatDate`, `formatNumber`, `formatPrice`, `formatCurrency`, `localize` on <button> tag. Remove these props from the element. For details, see https://fb.me/react-unknown-prop
+```
 
 ```js
 @withTranslator({ propsNamespace: 'translator' })
