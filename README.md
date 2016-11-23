@@ -100,11 +100,16 @@ class MyComponent extends Component {
 }
 ```
 
-Options:
+In order to prevent the "Warning: Unknown props" message, you can use the `propsNamespace` option:
 
 ```js
-{
-  propsNamespace: 'translator', // injected props will be set in props.translator
+@withTranslator({ propsNamespace: 'translator' })
+class Presenter extends React.Component {
+  render() {
+    const { translator: { __ }, ...props } = this.props;
+
+    return <Button {...props}>{__('foobar')}</Button>;
+  }
 }
 ```
 
