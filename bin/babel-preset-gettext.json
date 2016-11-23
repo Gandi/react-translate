@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["babel-gettext-plugin", {
+      "functionNames": {
+        "__": ["msgid"]
+      },
+      "fileName": "tmp-react-translate/extracted.po"
+    }]
+  ]
+}
