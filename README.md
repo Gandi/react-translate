@@ -43,11 +43,6 @@ npm install babel-cli
 > Note for npm 2 users, you have to make sure po2json in the root `node_modules`, the same way as
 `babel-cli`
 
-And finally, install `babel-runtime` in your dev-dependencies needed to be able to compile the code.
-
-```
-npm install babel-runtime --save-dev
-```
 
 ## Usage
 
