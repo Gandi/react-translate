@@ -110,11 +110,25 @@ class MyComponent extends Component {
 }
 ```
 
-Options:
+In order to prevent the [unknown props warning](https://facebook.github.io/react/warnings/unknown-prop.html)
+(and non-standard DOM attributes), you can use the `propsNamespace` option.
+
+> ```
+bundle.js:2009 Warning: Unknown props `formatDate`, `formatNumber`, `formatPrice`, `formatCurrency`, `localize` on <button> tag. Remove these props from the element. For details, see https://fb.me/react-unknown-prop
+```
 
 ```js
-{
-  propsNamespace: 'translator', // injected props will be set in props.translator
+@withTranslator({ propsNamespace: 'translator' })
+class Presenter extends React.Component {
+  static propTypes = {
+    translator: PropTypes.shape({ __: PropTypes.func.isRequired }),
+  };
+
+  render() {
+    const { translator: { __ }, ...props } = this.props;
+
+    return <Button {...props}>{__('foobar')}</Button>;
+  }
 }
 ```
 
