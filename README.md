@@ -100,11 +100,17 @@ class MyComponent extends Component {
 }
 ```
 
-In order to prevent the "Warning: Unknown props" message, you can use the `propsNamespace` option:
+In order to prevent [unknown
+properties](https://facebook.github.io/react/warnings/unknown-prop.html) (and non-standard DOM
+attributes), you can use the `propsNamespace` option:
 
 ```js
 @withTranslator({ propsNamespace: 'translator' })
 class Presenter extends React.Component {
+  static propTypes = {
+    translator: PropTypes.shape({ __: PropTypes.func.isRequired }),
+  };
+
   render() {
     const { translator: { __ }, ...props } = this.props;
 
