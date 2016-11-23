@@ -10,7 +10,6 @@
  * to merge external libraries messages with passed apps messages.
  */
 
-var _ = require('lodash');
 var fs = require('fs');
 var glob = require('glob');
 
@@ -36,7 +35,7 @@ glob('node_modules/gandi.*/dist/locales/template/*.json', {}, function (er, file
     return true;
   }
 
-  return _.each(files, function (path) {
+  return files.forEach(function (path) {
     helpers.log('  ' + path);
     var partialJson = JSON.parse(fs.readFileSync(path, 'utf-8'));
 
@@ -49,7 +48,7 @@ glob('node_modules/gandi.*/dist/locales/template/*.json', {}, function (er, file
       helpers.warn(destPath + ' doesn\'t exist yet, will create it.');
     }
 
-    var newJson = _.defaults(sourceJson, partialJson);
+    var newJson = Object.assign({}, partialJson, sourceJson);
 
     var printableJson = JSON.stringify(helpers.sortObject(newJson), null, 4);
 

@@ -11,7 +11,6 @@
  * of counterpart's plurals syntax.
  */
 
-var _ = require('lodash');
 var fs = require('fs');
 var glob = require('glob');
 var helpers = require('./helpers');
@@ -33,12 +32,13 @@ glob('locales/template/*.json', {}, function (er, files) {
     return true;
   }
 
-  return _.each(files, function (path) {
+  return files.forEach(function (path) {
     helpers.log('  ' + path);
     var sourceJson = JSON.parse(fs.readFileSync(path, 'utf-8'));
 
-    var newJson = sourceJson;
-    _.forOwn(sourceJson, function (value, key) {
+    var newJson = Object.assign({}, sourceJson);
+
+    Object.keys(sourceJson).forEach(function (key) {
       if (!key.match(/\|\w+$/) && key.match(/%\(count\)[d|s]/)) {
         newJson[key + '|zero'] = key + '|zero';
         newJson[key + '|one'] = key + '|one';

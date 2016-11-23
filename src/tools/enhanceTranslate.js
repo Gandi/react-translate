@@ -1,6 +1,28 @@
-import escape from 'lodash/escape';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+
+// Used to map characters to HTML entities.
+const htmlEscapes = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+
+const accessor = object => key => object[key];
+const unescapeHTMLCharReplacer = accessor(htmlEscapes);
+
+const reUnescapedHtml = /[&<>"']/g;
+const reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
+
+const escape = (string) => {
+  if (string && reHasUnescapedHtml.test(string)) {
+    return string.replace(reUnescapedHtml, unescapeHTMLCharReplacer);
+  }
+
+  return string;
+};
 
 const componentToString = (key, elt) => {
   if (!React.isValidElement(elt)) return elt;
