@@ -1,11 +1,13 @@
+/* global window: true */
 /* global document: true */
 
-import url;
+import url from 'url';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createTranslator, negociateLocale, provideTranslate } from 'gandi.translate';
+import { createTranslator, negociateLocale, provideTranslate }
+  from '@gandi/react-translate';
 
 import App from './App';
 import './index.css';
@@ -15,13 +17,15 @@ const defaultLocale = 'en';
 
 // It's up to you to detect the locale of your user
 // (by url param, cookie, X-Accept-Language header, user pref etc)
-const queryParamLocale = url.parse(redirectTo, true).query.lang;
+const queryParamLocale = url.parse(document.location.href, true).query.lang;
+
 const userBrowserLocales = window.navigator.languages ||
-	[(window.navigator.language || window.navigator.userLanguage)];
+  [(window.navigator.language || window.navigator.userLanguage)];
+
 const locale = negociateLocale([
-      queryParamLocale,
-      ...userBrowserLocales,
-    ], availableLocales, defaultLocale);
+  queryParamLocale,
+  ...userBrowserLocales,
+], availableLocales, defaultLocale);
 
 // It's up to you to define a strategy of how to retrieve your translations
 // (by a <script> tag, directly into the DOM, asynchronously by fetching an url, etc)
