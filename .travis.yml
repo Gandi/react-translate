@@ -10,4 +10,4 @@ script:
 - npm run lint
 - npm run flow
 - npm test
-- (cd samples/app/ && npm test)
+- (cd samples/app/ && npm i && npm test)
