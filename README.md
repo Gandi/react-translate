@@ -261,7 +261,7 @@ class MyComponent extends Component {
 
 ## App samples
 
-Check the samples/app directotry to see a "real" application in action.
+Check the samples/app directory to see a "real" application in action.
 
 ```
 cd samples/app

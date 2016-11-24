@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>{__('Welcome!')}</h2>
         </div>
 
         <p
@@ -26,8 +26,8 @@ class App extends Component {
         </ul>
 
         <p className="Links">
-          <a href="?lang=fr">{__('Switch to french')}</a>
-          <a href="?lang=en">{__('Switch to english')}</a>
+          <a href="?lang=fr">{__('Switch to French')}</a>
+          <a href="?lang=en">{__('Switch to English')}</a>
         </p>
       </div>
     );

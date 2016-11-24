@@ -2,6 +2,7 @@
     "A date sample": "A date sample", 
     "A price sample": "A price sample", 
     "Get started!": "This page is using <a href=\"https://github.com/Gandi/react-translate\">@gandi/react-translate</a> for format texts, numbers, dates, etc.", 
-    "Switch to english": "Switch to english", 
-    "Switch to french": "Switch to french"
+    "Switch to English": "Switch to English", 
+    "Switch to French": "Switch to French", 
+    "Welcome!": "Welcome to @gandi/react-translate sample app!"
 }
