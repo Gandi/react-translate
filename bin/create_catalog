@@ -14,7 +14,6 @@
  * with the new messages that were found.
  */
 
-var _ = require('lodash');
 var fs = require('fs');
 var glob = require('glob');
 var helpers = require('./helpers');
@@ -37,7 +36,7 @@ glob('locales/template/*.json', {}, function (er, files) {
     return true;
   }
 
-  return _.each(files, function (path, index) {
+  return files.forEach(function (path, index) {
     var newFiles = [];
 
     glob('locales/*', {}, function (erDirs, dirs) {
@@ -46,14 +45,14 @@ glob('locales/template/*.json', {}, function (er, files) {
         throw erDirs;
       }
 
-      _.each(dirs, function (dir) {
+      dirs.forEach(function (dir) {
         const lang = dir.replace('locales/', '');
         if (lang !== 'template') {
           newFiles.push(path.replace(/(.*)\/[\w_]+\/(.*)/, '$1/' + lang + '/$2'));
         }
       });
 
-      _.each(newFiles, function (newPath, indexLocales) {
+      newFiles.forEach(function (newPath, indexLocales) {
         if (index === files.length - 1 &&
             newFiles.length && indexLocales === newFiles.length - 1) {
           if (filesCreated === false) {
@@ -67,10 +66,11 @@ glob('locales/template/*.json', {}, function (er, files) {
         }
 
         var sourceJson = JSON.parse(fs.readFileSync(path, 'utf-8'));
-        sourceJson = _.mapValues(sourceJson, function () {
-          return '';
+
+        Object.keys(sourceJson).forEach(function (key) {
+          sourceJson[key] = '';
         });
-        var newJson = _.defaults({}, sourceJson);
+        var newJson = Object.assign({}, sourceJson);
 
         var printableJson = JSON.stringify(newJson, null, 4);
 

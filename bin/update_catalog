@@ -12,7 +12,6 @@
  * ones with the new messages that were found.
  */
 
-var _ = require('lodash');
 var fs = require('fs');
 var glob = require('glob');
 var helpers = require('./helpers');
@@ -34,7 +33,7 @@ glob('locales/*/*.json', {}, function (er, files) {
     return true;
   }
 
-  return _.each(files, function (file) {
+  return files.forEach(function (file) {
     var path = file;
     if (path.match(/template\/[^/]+\.json$/)) {
       return true;
@@ -50,14 +49,15 @@ glob('locales/*/*.json', {}, function (er, files) {
         throw er_;
       }
 
-      _.each(sourceFiles, function (sourcePath) {
+      sourceFiles.forEach(function (sourcePath) {
         var sourceJson = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
 
         // New translations should have an empty translation.
-        sourceJson = _.mapValues(sourceJson, function () {
-          return '';
+        Object.keys(sourceJson).forEach(function (key) {
+          sourceJson[key] = '';
         });
-        var newJson = _.defaults(oldJson, sourceJson);
+
+        var newJson = Object.assign({}, sourceJson, oldJson);
 
         var printableJson = JSON.stringify(helpers.sortObject(newJson), null, 4);
 

@@ -78,7 +78,6 @@
     "glob": "^7.0.5",
     "hoist-non-react-statics": "^1.2.0",
     "intl": "^1.2.5",
-    "lodash": "^4.17.1",
     "moment": "^2.15.1",
     "po2json": "^0.4.1",
     "shallowequal": "^0.2.2",

@@ -1,5 +1,20 @@
-import _ from 'lodash';
-
+/**
+ * Simple truthy-only, unique intersection function of two arrays.
+ *
+ * @param Array   array1
+ * @param Array   array2
+ *
+ * @return Array
+ */
+function simpleIntersection(array1, array2) {
+  return array1
+    // Remove falsy elements
+    .filter(el => el)
+    // Match elements belonging in the two arrays
+    .filter(el => array2.indexOf(el) !== -1)
+    // Remove duplicates
+    .filter((el, idx, arr) => arr.indexOf(el) === idx);
+}
 
 /**
  * Returns the best match for the user's locale.
@@ -15,8 +30,9 @@ const negociateLocale = (
   availableLocales,
   defaultLocale
 ) => {
-  const validLanguages = _.intersection(
-    preferedLocales.filter(x => x),
+  const validLanguages =
+  simpleIntersection(
+    preferedLocales,
     availableLocales
   );
 
