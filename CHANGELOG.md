@@ -3,13 +3,13 @@
 ## [Unreleased]
 
 ### Added
-
   - Create a launcher for extract_messages, update_catalog and other scripts.
+  - Sample app.
 
 ### Changed
-
   - Clean dependencies and improve installation part of the README.
   - Replace `pybabel` extraction lib by `babel-gettext-plugin`.
+  - Remove lodash dependency.
 
 ## [1.0.0-alpha] - 2016-11-17
 
