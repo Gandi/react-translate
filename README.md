@@ -43,7 +43,6 @@ npm install babel-cli
 > Note for npm 2 users, you have to make sure po2json in the root `node_modules`, the same way as
 `babel-cli`
 
-
 ## Usage
 
 ### 1. init: `provideTranslate`
@@ -65,7 +64,7 @@ const translatorParams = {
   utcOffset: 0,         // user's zone offset
   defaultLocale: 'en',  // default application locale
   logMissing: false,    // display warnings when translations are missing (except on production)
-  localeData: {         // IntlPolyfill localeData configuration
+  localeData: {         // Config for TODO
     locale: 'fr',
     number: {
       currencies: {
@@ -132,6 +131,18 @@ class Presenter extends React.Component {
   }
 }
 ```
+
+**Note About Namespaces**
+
+You can set a namespace if you need it on some translations with [the counterpart scope
+parameter](https://github.com/martinandert/counterpart#lookup):
+
+```
+__('string', { scope: 'my.scope' })
+```
+
+_Moreover, current extraction mechanism has no way to extract namespace from
+JavaScript, it is your responsibility to pass it to the extract script._
 
 ## 3. Create language files
 
@@ -257,16 +268,6 @@ class MyComponent extends Component {
     return (<div>{ localize(new Date()).format('LLLL') }</div>);
   }
 }
-```
-
-## App samples
-
-Check the samples/app directory to see a "real" application in action.
-
-```
-cd samples/app
-npm i
-npm run start
 ```
 
 ## Change Log
