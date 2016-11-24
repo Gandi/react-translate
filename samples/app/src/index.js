@@ -1,3 +1,5 @@
+/* global document: true */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { provideTranslate, createTranslator } from '@gandi/react-translate';
@@ -8,31 +10,21 @@ import './index.css';
 // it's up to you to detect the locale of your user
 // (by url, cookie, header X-Accept-Language, etc)
 const matches = document.location.search.match(/lang=(.*)/);
-const locale = (Array.isArray(matches) && matches.pop()) || 'en';
+let locale = (Array.isArray(matches) && matches.pop()) || 'en';
+
+const availableLocales = ['fr', 'en'];
+if (!availableLocales.includes(locale)) {
+  locale = 'en';
+}
 
 // it's up to you to define a strategy of how to retrieve your translations
 // (by a <script> tag, directly into the DOM, asynchronously by fetching an url, etc)
-const translations = {
-  fr: {
-    'Get started!': 'Cette page utilise <a href="https://github.com/Gandi/react-translate">@gandi/react-translate</a> pour formater textes, nombres, dates, etc.',
-    'A price sample': 'Un exemple de prix',
-    'A date sample': 'Un exemple de date',
-    'Switch to french': 'Traduire en français',
-    'Switch to english': 'Traduire en anglais',
-  },
-  en: {
-    'Get started!': 'This page is using <a href="https://github.com/Gandi/react-translate">@gandi/react-translate</a> for format texts, numbers, dates, etc.',
-    'A price sample': 'A price sample',
-    'A date sample': 'A date sample',
-    'Switch to french': 'Switch to french',
-    'Switch to english': 'Switch to english',
-  },
-}
+const translations = require(`../locales/${locale}/root.json`);
 
 // define your translations params
 const translatorParams = {
-  translations: translations[locale],   // translations for an unique language
-  locale,                               // user's locale
+  translations,         // translations for an unique language
+  locale,               // user's locale
 };
 
 // create translator

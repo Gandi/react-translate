@@ -5,12 +5,8 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  static propTypes = {
-    translator: PropTypes.object.isRequired,
-  };
-
   render() {
-    const { translator: { __, formatPrice, formatDate }} = this.props;
+    const { translator: { __, formatPrice, formatDate } } = this.props;
 
     return (
       <div className="App">
@@ -18,10 +14,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+
         <p
           className="App-intro"
           dangerouslySetInnerHTML={__('Get started!', { withHTML: true })}
-        ></p>
+        />
 
         <ul className="Sample">
           <li>{__('A price sample')}: {formatPrice(20, 'EUR')}</li>
@@ -36,6 +33,10 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  translator: PropTypes.object.isRequired,
+};
 
 // decorate your app with withTranslator to inject the helpers
 // into the component 'propsNamespace' prop

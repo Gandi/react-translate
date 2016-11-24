@@ -1,0 +1,7 @@
+{
+    "A date sample": "A date sample", 
+    "A price sample": "A price sample", 
+    "Get started!": "This page is using <a href=\"https://github.com/Gandi/react-translate\">@gandi/react-translate</a> for format texts, numbers, dates, etc.", 
+    "Switch to english": "Switch to english", 
+    "Switch to french": "Switch to french"
+}
