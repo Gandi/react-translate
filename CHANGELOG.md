@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+## [1.0.0] - 2016-11-24
 ### Added
   - Create a launcher for extract_messages, update_catalog and other scripts.
   - Sample app.
@@ -14,7 +15,6 @@
 ## [1.0.0-alpha] - 2016-11-17
 
 ## 2016-11-15
-
 ### Added
   - Make the 'gandi' directory (in locales) before extraction.
 
