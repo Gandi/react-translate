@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.1] - 2016-11-25
+
 ### Fixed
 
   - Add missing `babel-gettext-plugin` in peerDependencies and installation process
@@ -259,6 +261,7 @@ should upgrade with care.
 ## 2016-03-15
   - Initial release.
 
-[Unreleased]: https://github.com/Gandi/react-translate/compare/1.0.0...master
+[Unreleased]: https://github.com/Gandi/react-translate/compare/1.0.1...master
+[1.0.1]: https://github.com/Gandi/react-translate/compare/1.0.0...1.0.1
 [1.0.0]:  https://github.com/Gandi/react-translate/compare/v1.0.0-alpha...1.0.0
 [1.0.0-alpha]:  https://github.com/Gandi/react-translate/releases/tag/v1.0.0-alpha
