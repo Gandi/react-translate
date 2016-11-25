@@ -33,16 +33,12 @@ scripts:
 }
 ```
 
-Make sure you have `babel-cli` in your dependencies (it's up to you to select the version saved in
-your project):
+Extraction script requires `babel-cli`, `babel-gettext-plugin` and `po2json` in your dependencies
+(it's up to you to select the version saved in your project):
 
 ```
-npm install babel-cli
+npm install --save-dev babel-cli babel-gettext-plugin po2json
 ```
-
-> Note for npm 2 users, you have to make sure po2json in the root `node_modules`, the same way as
-`babel-cli`
-
 
 ## Usage
 

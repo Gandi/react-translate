@@ -79,12 +79,13 @@
     "hoist-non-react-statics": "^1.2.0",
     "intl": "^1.2.5",
     "moment": "^2.15.1",
-    "po2json": "^0.4.1",
     "shallowequal": "^0.2.2",
     "warning": "^3.0.0"
   },
   "peerDependencies": {
     "babel-cli": "*",
+    "babel-gettext-plugin": "*",
+    "po2json": "^0.4.1",
     "react": "*",
     "react-dom": "*"
   }
