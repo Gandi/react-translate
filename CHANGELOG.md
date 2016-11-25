@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Fixed
+
+  - Add missing `babel-gettext-plugin` in peerDependencies and installation process
+  - move `po2json` to peerDependencies for consistency
+
 ## [1.0.0] - 2016-11-24
 ### Added
   - Create a launcher for extract_messages, update_catalog and other scripts.
@@ -19,15 +24,15 @@
   - Make the 'gandi' directory (in locales) before extraction.
 
 ### Changed
-  * Clean deps: colors, lodash, moment are now peer deps.
+  - Clean deps: colors, lodash, moment are now peer deps.
 
 ## 2016-10-25
 ### Added
-  * ability to render static components in translations variables.
+  - ability to render static components in translations variables.
 
 ## 2016-10-18
 ### Fixed
-  * Export localeSelector
+  - Export localeSelector
 
 ### Fixed
   - Deprecate action `selectLocale`.
@@ -69,7 +74,7 @@
 
 ## 2016-09-21
 ### Fixed
-  * Add propsNamespace attribute in stubWithTranslator test helper
+  - Add propsNamespace attribute in stubWithTranslator test helper
 
 ## 2016-09-19
 ### Changed
