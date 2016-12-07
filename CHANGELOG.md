@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.2] - 2016-12-07
+
 ### Fixed
 
   - Use relative path to scripts in `extract_messages` script.
@@ -265,7 +267,8 @@ should upgrade with care.
 ## 2016-03-15
   - Initial release.
 
-[Unreleased]: https://github.com/Gandi/react-translate/compare/1.0.1...master
+[Unreleased]: https://github.com/Gandi/react-translate/compare/1.0.2...master
+[1.0.2]: https://github.com/Gandi/react-translate/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/Gandi/react-translate/compare/1.0.0...1.0.1
 [1.0.0]:  https://github.com/Gandi/react-translate/compare/v1.0.0-alpha...1.0.0
 [1.0.0-alpha]:  https://github.com/Gandi/react-translate/releases/tag/v1.0.0-alpha

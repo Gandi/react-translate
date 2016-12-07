@@ -1,6 +1,6 @@
 {
   "name": "@gandi/react-translate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "I18N libraries and tools for your react application.",
   "main": "./dist/index.js",
   "bin": {
