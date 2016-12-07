@@ -38,8 +38,8 @@ echo -e "  \e[32mSuccessfully extracted messages to ${FILENAME}\e[0m"
 rm -r $TMP_DIRECTORY
 
 # merge external libs messages
-node_modules/.bin/merge_catalogs $NAMESPACE
+$SCRIPT_DIR/merge_catalogs $NAMESPACE
 
 # rewrite plurals
-node_modules/.bin/create_counterpart_plurals
+$SCRIPT_DIR/create_counterpart_plurals
 set +e

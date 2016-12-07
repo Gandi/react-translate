@@ -2,12 +2,16 @@
 
 ## [Unreleased]
 
+### Fixed
+
+  - Use relative path to scripts in `extract_messages` script.
+
 ## [1.0.1] - 2016-11-25
 
 ### Fixed
 
-  - Add missing `babel-gettext-plugin` in peerDependencies and installation process
-  - move `po2json` to peerDependencies for consistency
+  - Add missing `babel-gettext-plugin` in peerDependencies and installation process.
+  - move `po2json` to peerDependencies for consistency.
 
 ## [1.0.0] - 2016-11-24
 ### Added
