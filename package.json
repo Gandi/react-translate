@@ -87,6 +87,7 @@
     "babel-gettext-plugin": "*",
     "po2json": "^0.4.1",
     "react": "*",
+    "prop-types": "*",
     "react-dom": "*"
   }
 }
