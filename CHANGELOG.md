@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+  - Add prop-types dependency to be compatible w/ react 16
+
 ## [1.0.2] - 2016-12-07
 
 ### Fixed
