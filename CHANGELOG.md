@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.3] - 2017-10-08
+
 ### Changed
 
   - Add prop-types dependency to be compatible w/ react 16
@@ -271,7 +273,8 @@ should upgrade with care.
 ## 2016-03-15
   - Initial release.
 
-[Unreleased]: https://github.com/Gandi/react-translate/compare/1.0.2...master
+[Unreleased]: https://github.com/Gandi/react-translate/compare/1.0.3...master
+[1.0.3]: https://github.com/Gandi/react-translate/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/Gandi/react-translate/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/Gandi/react-translate/compare/1.0.0...1.0.1
 [1.0.0]:  https://github.com/Gandi/react-translate/compare/v1.0.0-alpha...1.0.0
