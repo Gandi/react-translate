@@ -2,7 +2,8 @@
  * Price component for prices translations.
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { withTranslator } from './withTranslator';
 
 
