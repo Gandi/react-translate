@@ -108,13 +108,16 @@ class MyComponent extends Component {
 ```
 
 In order to prevent the [unknown props warning](https://facebook.github.io/react/warnings/unknown-prop.html)
-(and non-standard DOM attributes), you can use the `propsNamespace` option.
+(and non-standard DOM attributes):
 
-> ```
-bundle.js:2009 Warning: Unknown props `formatDate`, `formatNumber`, `formatPrice`, `formatCurrency`, `localize` on <button> tag. Remove these props from the element. For details, see https://fb.me/react-unknown-prop
+```javascript
+bundle.js:2009 Warning: Unknown props `formatDate`, `formatNumber`, `formatPrice`, `formatCurrency`, `localize`
+on <button> tag. Remove these props from the element. For details, see https://fb.me/react-unknown-prop
 ```
 
-```js
+you can use the `propsNamespace` option:
+
+```javascript
 @withTranslator({ propsNamespace: 'translator' })
 class Presenter extends React.Component {
   static propTypes = {
@@ -161,7 +164,7 @@ A catalog file is a json file, representing a single language.
 
 Before the first run you'll need to create one folder per needed locale, for instance:
 
-```
+```bash
 mkdir locales/{fr,it,es}
 ```
 
@@ -259,7 +262,7 @@ class MyComponent extends Component {
 
 Check the samples/app directory to see a "real" application in action.
 
-```
+```bash
 cd samples/app
 npm i
 npm run start
