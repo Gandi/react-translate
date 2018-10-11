@@ -1,3 +1,5 @@
+**// DEPRECATED: please consider to use [linguijs](https://lingui.js.org/) or other alternatives.**
+
 # @gandi/react-translate
 
 >I18N libraries and tools for your react application.
